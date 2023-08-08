@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PROYECTOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="IdDepartamento" />
+          </Key>
+          <Property Name="IdDepartamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MARCA">
+          <Key>
+            <PropertyRef Name="IdMarca" />
+          </Key>
+          <Property Name="IdMarca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRENDA">
+          <Key>
+            <PropertyRef Name="IdPrenda" />
+          </Key>
+          <Property Name="IdPrenda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMarca" Type="int" />
+          <Property Name="IdTalla" Type="int" />
+          <Property Name="IdDepartamento" Type="int" />
+          <Property Name="IdProvedor" Type="int" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Stock" Type="int" />
+        </EntityType>
+        <EntityType Name="PROVEEDOR">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TALLA">
+          <Key>
+            <PropertyRef Name="IdTalla" />
+          </Key>
+          <Property Name="IdTalla" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VENTA">
+          <Key>
+            <PropertyRef Name="IdVenta" />
+          </Key>
+          <Property Name="IdVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPrenda" Type="int" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="Fecha" Type="date" />
+        </EntityType>
+        <Association Name="FK__PRENDA__IdDepart__1BFD2C07">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="0..1" />
+          <End Role="PRENDA" Type="Self.PRENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="IdDepartamento" />
+            </Principal>
+            <Dependent Role="PRENDA">
+              <PropertyRef Name="IdDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRENDA__IdMarca__1A14E395">
+          <End Role="MARCA" Type="Self.MARCA" Multiplicity="0..1" />
+          <End Role="PRENDA" Type="Self.PRENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MARCA">
+              <PropertyRef Name="IdMarca" />
+            </Principal>
+            <Dependent Role="PRENDA">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRENDA__IdProved__1CF15040">
+          <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="0..1" />
+          <End Role="PRENDA" Type="Self.PRENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDOR">
+              <PropertyRef Name="IdProveedor" />
+            </Principal>
+            <Dependent Role="PRENDA">
+              <PropertyRef Name="IdProvedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRENDA__IdTalla__1B0907CE">
+          <End Role="TALLA" Type="Self.TALLA" Multiplicity="0..1" />
+          <End Role="PRENDA" Type="Self.PRENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TALLA">
+              <PropertyRef Name="IdTalla" />
+            </Principal>
+            <Dependent Role="PRENDA">
+              <PropertyRef Name="IdTalla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VENTA__IdCliente__22AA2996">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="VENTA">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VENTA__IdPrenda__21B6055D">
+          <End Role="PRENDA" Type="Self.PRENDA" Multiplicity="0..1" />
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRENDA">
+              <PropertyRef Name="IdPrenda" />
+            </Principal>
+            <Dependent Role="VENTA">
+              <PropertyRef Name="IdPrenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="EditarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCliente" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+          <Parameter Name="Resultado" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="InsertarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Clave" Type="varchar" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+          <Parameter Name="Resultado" Type="int" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="PROYECTOModelStoreContainer">
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MARCA" EntityType="Self.MARCA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRENDA" EntityType="Self.PRENDA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TALLA" EntityType="Self.TALLA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VENTA" EntityType="Self.VENTA" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PRENDA__IdDepart__1BFD2C07" Association="Self.FK__PRENDA__IdDepart__1BFD2C07">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="PRENDA" EntitySet="PRENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRENDA__IdMarca__1A14E395" Association="Self.FK__PRENDA__IdMarca__1A14E395">
+            <End Role="MARCA" EntitySet="MARCA" />
+            <End Role="PRENDA" EntitySet="PRENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRENDA__IdProved__1CF15040" Association="Self.FK__PRENDA__IdProved__1CF15040">
+            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+            <End Role="PRENDA" EntitySet="PRENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRENDA__IdTalla__1B0907CE" Association="Self.FK__PRENDA__IdTalla__1B0907CE">
+            <End Role="TALLA" EntitySet="TALLA" />
+            <End Role="PRENDA" EntitySet="PRENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VENTA__IdCliente__22AA2996" Association="Self.FK__VENTA__IdCliente__22AA2996">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="VENTA" EntitySet="VENTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VENTA__IdPrenda__21B6055D" Association="Self.FK__VENTA__IdPrenda__21B6055D">
+            <End Role="PRENDA" EntitySet="PRENDA" />
+            <End Role="VENTA" EntitySet="VENTA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PROYECTOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="VENTA" Relationship="Self.FK__VENTA__IdCliente__22AA2996" FromRole="CLIENTE" ToRole="VENTA" />
+        </EntityType>
+        <EntityType Name="DEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="IdDepartamento" />
+          </Key>
+          <Property Name="IdDepartamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRENDA" Relationship="Self.FK__PRENDA__IdDepart__1BFD2C07" FromRole="DEPARTAMENTO" ToRole="PRENDA" />
+        </EntityType>
+        <EntityType Name="MARCA">
+          <Key>
+            <PropertyRef Name="IdMarca" />
+          </Key>
+          <Property Name="IdMarca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRENDA" Relationship="Self.FK__PRENDA__IdMarca__1A14E395" FromRole="MARCA" ToRole="PRENDA" />
+        </EntityType>
+        <EntityType Name="PRENDA">
+          <Key>
+            <PropertyRef Name="IdPrenda" />
+          </Key>
+          <Property Name="IdPrenda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMarca" Type="Int32" />
+          <Property Name="IdTalla" Type="Int32" />
+          <Property Name="IdDepartamento" Type="Int32" />
+          <Property Name="IdProvedor" Type="Int32" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Stock" Type="Int32" />
+          <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.FK__PRENDA__IdDepart__1BFD2C07" FromRole="PRENDA" ToRole="DEPARTAMENTO" />
+          <NavigationProperty Name="MARCA" Relationship="Self.FK__PRENDA__IdMarca__1A14E395" FromRole="PRENDA" ToRole="MARCA" />
+          <NavigationProperty Name="PROVEEDOR" Relationship="Self.FK__PRENDA__IdProved__1CF15040" FromRole="PRENDA" ToRole="PROVEEDOR" />
+          <NavigationProperty Name="TALLA" Relationship="Self.FK__PRENDA__IdTalla__1B0907CE" FromRole="PRENDA" ToRole="TALLA" />
+          <NavigationProperty Name="VENTA" Relationship="Self.FK__VENTA__IdPrenda__21B6055D" FromRole="PRENDA" ToRole="VENTA" />
+        </EntityType>
+        <EntityType Name="PROVEEDOR">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRENDA" Relationship="Self.FK__PRENDA__IdProved__1CF15040" FromRole="PROVEEDOR" ToRole="PRENDA" />
+        </EntityType>
+        <EntityType Name="TALLA">
+          <Key>
+            <PropertyRef Name="IdTalla" />
+          </Key>
+          <Property Name="IdTalla" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRENDA" Relationship="Self.FK__PRENDA__IdTalla__1B0907CE" FromRole="TALLA" ToRole="PRENDA" />
+        </EntityType>
+        <EntityType Name="VENTA">
+          <Key>
+            <PropertyRef Name="IdVenta" />
+          </Key>
+          <Property Name="IdVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPrenda" Type="Int32" />
+          <Property Name="IdCliente" Type="Int32" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK__VENTA__IdCliente__22AA2996" FromRole="VENTA" ToRole="CLIENTE" />
+          <NavigationProperty Name="PRENDA" Relationship="Self.FK__VENTA__IdPrenda__21B6055D" FromRole="VENTA" ToRole="PRENDA" />
+        </EntityType>
+        <Association Name="FK__VENTA__IdCliente__22AA2996">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="VENTA">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRENDA__IdDepart__1BFD2C07">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="0..1" />
+          <End Role="PRENDA" Type="Self.PRENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="IdDepartamento" />
+            </Principal>
+            <Dependent Role="PRENDA">
+              <PropertyRef Name="IdDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRENDA__IdMarca__1A14E395">
+          <End Role="MARCA" Type="Self.MARCA" Multiplicity="0..1" />
+          <End Role="PRENDA" Type="Self.PRENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MARCA">
+              <PropertyRef Name="IdMarca" />
+            </Principal>
+            <Dependent Role="PRENDA">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRENDA__IdProved__1CF15040">
+          <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="0..1" />
+          <End Role="PRENDA" Type="Self.PRENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDOR">
+              <PropertyRef Name="IdProveedor" />
+            </Principal>
+            <Dependent Role="PRENDA">
+              <PropertyRef Name="IdProvedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRENDA__IdTalla__1B0907CE">
+          <End Role="TALLA" Type="Self.TALLA" Multiplicity="0..1" />
+          <End Role="PRENDA" Type="Self.PRENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TALLA">
+              <PropertyRef Name="IdTalla" />
+            </Principal>
+            <Dependent Role="PRENDA">
+              <PropertyRef Name="IdTalla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VENTA__IdPrenda__21B6055D">
+          <End Role="PRENDA" Type="Self.PRENDA" Multiplicity="0..1" />
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRENDA">
+              <PropertyRef Name="IdPrenda" />
+            </Principal>
+            <Dependent Role="VENTA">
+              <PropertyRef Name="IdPrenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PROYECTOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+          <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" />
+          <EntitySet Name="MARCA" EntityType="Self.MARCA" />
+          <EntitySet Name="PRENDA" EntityType="Self.PRENDA" />
+          <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" />
+          <EntitySet Name="TALLA" EntityType="Self.TALLA" />
+          <EntitySet Name="VENTA" EntityType="Self.VENTA" />
+          <AssociationSet Name="FK__VENTA__IdCliente__22AA2996" Association="Self.FK__VENTA__IdCliente__22AA2996">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="VENTA" EntitySet="VENTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRENDA__IdDepart__1BFD2C07" Association="Self.FK__PRENDA__IdDepart__1BFD2C07">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="PRENDA" EntitySet="PRENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRENDA__IdMarca__1A14E395" Association="Self.FK__PRENDA__IdMarca__1A14E395">
+            <End Role="MARCA" EntitySet="MARCA" />
+            <End Role="PRENDA" EntitySet="PRENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRENDA__IdProved__1CF15040" Association="Self.FK__PRENDA__IdProved__1CF15040">
+            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+            <End Role="PRENDA" EntitySet="PRENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRENDA__IdTalla__1B0907CE" Association="Self.FK__PRENDA__IdTalla__1B0907CE">
+            <End Role="TALLA" EntitySet="TALLA" />
+            <End Role="PRENDA" EntitySet="PRENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VENTA__IdPrenda__21B6055D" Association="Self.FK__VENTA__IdPrenda__21B6055D">
+            <End Role="PRENDA" EntitySet="PRENDA" />
+            <End Role="VENTA" EntitySet="VENTA" />
+          </AssociationSet>
+          <FunctionImport Name="EditarCliente">
+            <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+            <Parameter Name="Resultado" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarCliente">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+            <Parameter Name="Resultado" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PROYECTOModelStoreContainer" CdmEntityContainer="PROYECTOEntities">
+          <EntitySetMapping Name="CLIENTE">
+            <EntityTypeMapping TypeName="PROYECTOModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTAMENTO">
+            <EntityTypeMapping TypeName="PROYECTOModel.DEPARTAMENTO">
+              <MappingFragment StoreEntitySet="DEPARTAMENTO">
+                <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MARCA">
+            <EntityTypeMapping TypeName="PROYECTOModel.MARCA">
+              <MappingFragment StoreEntitySet="MARCA">
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRENDA">
+            <EntityTypeMapping TypeName="PROYECTOModel.PRENDA">
+              <MappingFragment StoreEntitySet="PRENDA">
+                <ScalarProperty Name="IdPrenda" ColumnName="IdPrenda" />
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="IdTalla" ColumnName="IdTalla" />
+                <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+                <ScalarProperty Name="IdProvedor" ColumnName="IdProvedor" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDOR">
+            <EntityTypeMapping TypeName="PROYECTOModel.PROVEEDOR">
+              <MappingFragment StoreEntitySet="PROVEEDOR">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TALLA">
+            <EntityTypeMapping TypeName="PROYECTOModel.TALLA">
+              <MappingFragment StoreEntitySet="TALLA">
+                <ScalarProperty Name="IdTalla" ColumnName="IdTalla" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VENTA">
+            <EntityTypeMapping TypeName="PROYECTOModel.VENTA">
+              <MappingFragment StoreEntitySet="VENTA">
+                <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+                <ScalarProperty Name="IdPrenda" ColumnName="IdPrenda" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EditarCliente" FunctionName="PROYECTOModel.Store.EditarCliente" />
+          <FunctionImportMapping FunctionImportName="InsertarCliente" FunctionName="PROYECTOModel.Store.InsertarCliente" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

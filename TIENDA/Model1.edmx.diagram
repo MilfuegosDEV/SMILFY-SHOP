@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="228b8775dae04603aef04d23db52fbf4" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="PROYECTOModel.CLIENTE" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTOModel.DEPARTAMENTO" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTOModel.MARCA" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTOModel.PRENDA" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTOModel.PROVEEDOR" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTOModel.TALLA" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTOModel.VENTA" Width="2.875" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="PROYECTOModel.FK__VENTA__IdCliente__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTOModel.FK__PRENDA__IdDepart__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTOModel.FK__PRENDA__IdMarca__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTOModel.FK__PRENDA__IdProved__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTOModel.FK__PRENDA__IdTalla__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTOModel.FK__VENTA__IdPrenda__21B6055D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
