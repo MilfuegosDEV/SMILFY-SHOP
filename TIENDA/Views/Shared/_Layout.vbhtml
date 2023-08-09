@@ -41,6 +41,10 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Clientes
                         </a>
+                        <a class="nav-link" href="@Url.Action("Index", "MARCAs")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Marcas
+                        </a>
                         <div class="sb-sidenav-menu-heading">Addons</div>
                         <a class="nav-link" href="charts.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
