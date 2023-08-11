@@ -14,7 +14,7 @@
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar-->
-        <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
+        <!--<ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -24,66 +24,76 @@
                     <li><a class="dropdown-item" href="#!">Logout</a></li>
                 </ul>
             </li>
-        </ul>
+        </ul>-->
     </nav>
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="@Url.Action("Index", "Home")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Administración</div>
-                        <a class="nav-link" href="@Url.Action("Index", "CLIENTEs")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                            Clientes
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Charts
-                        </a>
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Tables
-                        </a>
-                    </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    Start Bootstrap
-                </div>
-            </nav>
-        </div>
-        <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4 mt-4">
-                    @RenderBody()
-                </div>
-            </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SMILFY 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
+		<div id="layoutSidenav">
+			<div id="layoutSidenav_nav">
+				<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+					<div class="sb-sidenav-menu">
+						<div class="nav">
+							<div class="sb-sidenav-menu-heading">Home</div>
+							<a class="nav-link" href="@Url.Action("Index", "Home")">
+								<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+								Dashboard
+							</a>
+							<div class="sb-sidenav-menu-heading">Administración</div>
+							<a class="nav-link" href="@Url.Action("Index", "CLIENTEs")">
+								<div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+								Clientes
+							</a>
+							<a class="nav-link" href="@Url.Action("Index", "DEPARTAMENTOes")">
+								<div class="sb-nav-link-icon"><i class="fas fa-box-open"></i></div>
+								Departamentos
+							</a>
+							<a class="nav-link" href="@Url.Action("Index", "MARCAs")">
+								<div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
+								Marcas
+							</a>
+							<a class="nav-link" href="@Url.Action("Index", "PRENDAs")">
+								<div class="sb-nav-link-icon"><i class="fas fa-tshirt"></i></div>
+								Prendas
+							</a>
+							<a class="nav-link" href="@Url.Action("Index", "PROVEEDORs")">
+								<div class="sb-nav-link-icon"><i class="fas fa-truck"></i></i></div>
+								Proveedores
+							</a>
+							<a class="nav-link" href="@Url.Action("Index", "TALLAs")">
+								<div class="sb-nav-link-icon"><i class="fas fa-ruler"></i></div>
+								Tallas
+							</a>
+							<a class="nav-link" href="@Url.Action("Index", "VENTAs")">
+								<div class="sb-nav-link-icon"><i class="fas fa-shopping-bag"></i></div>
+								Ventas
+							</a>
+						</div>
+					</div>
+					@*<div class="sb-sidenav-footer">
+						<div class="small">Esto no sirve aún</div>
+						:v
+					</div>*@
+				</nav>
+			</div>
+			<div id="layoutSidenav_content">
+				<main>
+					<div class="container-fluid px-4 mt-4">
+						@RenderBody()
+					</div>
+				</main>
+				<!--<footer class="py-4 bg-light mt-auto">-->
+					@*<div class="container-fluid px-4">
+						<div class="d-flex align-items-center justify-content-between small">
+							<div class="text-muted">Copyright &copy; SMILFY 2023</div>
+							<div>
+								<a href="#">Privacy Policy</a>
+								&middot;
+								<a href="#">Terms &amp; Conditions</a>
+							</div>
+						</div>
+					</div>*@
+				<!--</footer>-->
+			</div>
+		</div>
 
-
-
-    @*<li>@Html.ActionLink("Inicio", "Index", "Home", New With {.area = ""}, New With {.class = "nav-link"})</li>
-        <li>@Html.ActionLink("Acerca de", "About", "Home", New With {.area = ""}, New With {.class = "nav-link"})</li>
-        <li>@Html.ActionLink("Contacto", "Contact", "Home", New With {.area = ""}, New With {.class = "nav-link"})</li>*@
 
 
 

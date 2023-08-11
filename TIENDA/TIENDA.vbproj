@@ -256,6 +256,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CLIENTEsController.vb" />
+    <Compile Include="Controllers\DEPARTAMENTOesController.vb" />
+    <Compile Include="Controllers\MARCAsController.vb" />
+    <Compile Include="Controllers\PRENDAsController.vb" />
+    <Compile Include="Controllers\PROVEEDORsController.vb" />
+    <Compile Include="Controllers\TALLAsController.vb" />
+    <Compile Include="Controllers\VENTAsController.vb" />
     <Compile Include="DEPARTAMENTO.vb">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -684,6 +690,36 @@
     <Content Include="webfonts\fa-brands-400.woff" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="Views\MARCAs\Create.vbhtml" />
+    <Content Include="Views\MARCAs\Delete.vbhtml" />
+    <Content Include="Views\MARCAs\Details.vbhtml" />
+    <Content Include="Views\MARCAs\Edit.vbhtml" />
+    <Content Include="Views\MARCAs\Index.vbhtml" />
+    <Content Include="Views\PRENDAs\Create.vbhtml" />
+    <Content Include="Views\PRENDAs\Delete.vbhtml" />
+    <Content Include="Views\PRENDAs\Details.vbhtml" />
+    <Content Include="Views\PRENDAs\Edit.vbhtml" />
+    <Content Include="Views\PRENDAs\Index.vbhtml" />
+    <Content Include="Views\VENTAs\Create.vbhtml" />
+    <Content Include="Views\VENTAs\Delete.vbhtml" />
+    <Content Include="Views\VENTAs\Details.vbhtml" />
+    <Content Include="Views\VENTAs\Edit.vbhtml" />
+    <Content Include="Views\VENTAs\Index.vbhtml" />
+    <Content Include="Views\DEPARTAMENTOes\Create.vbhtml" />
+    <Content Include="Views\DEPARTAMENTOes\Delete.vbhtml" />
+    <Content Include="Views\DEPARTAMENTOes\Details.vbhtml" />
+    <Content Include="Views\DEPARTAMENTOes\Edit.vbhtml" />
+    <Content Include="Views\DEPARTAMENTOes\Index.vbhtml" />
+    <Content Include="Views\PROVEEDORs\Create.vbhtml" />
+    <Content Include="Views\PROVEEDORs\Delete.vbhtml" />
+    <Content Include="Views\PROVEEDORs\Details.vbhtml" />
+    <Content Include="Views\PROVEEDORs\Edit.vbhtml" />
+    <Content Include="Views\PROVEEDORs\Index.vbhtml" />
+    <Content Include="Views\TALLAs\Create.vbhtml" />
+    <Content Include="Views\TALLAs\Delete.vbhtml" />
+    <Content Include="Views\TALLAs\Details.vbhtml" />
+    <Content Include="Views\TALLAs\Edit.vbhtml" />
+    <Content Include="Views\TALLAs\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -703,8 +739,6 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Views\_ViewStart.vbhtml" />
-    <Content Include="Views\Home\About.vbhtml" />
-    <Content Include="Views\Home\Contact.vbhtml" />
     <Content Include="Views\Home\Index.vbhtml" />
     <Content Include="Views\Shared\Error.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />
